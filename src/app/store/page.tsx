@@ -2,11 +2,14 @@
 
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { useCart } from "@/context/CartContext";
+import { Sidebar } from "@/components/Sidebar";
 
 export default function Store() {
   const router = useRouter();
   const { addToCart, cartCount } = useCart();
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const products = [
     {
@@ -44,14 +47,15 @@ export default function Store() {
 
   return (
     <div className="min-h-screen bg-[#D2E7FE]">
+      <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
       {/* Navigation Menu */}
       <nav className="flex items-center justify-between px-16 py-12">
         {/* Hamburger Menu */}
-        <div className="space-y-2 hover:cursor-pointer">
+        <button onClick={() => setIsSidebarOpen(true)} className="space-y-2 hover:cursor-pointer">
           <div className="w-16 h-3 bg-black rounded-sm"></div>
           <div className="w-16 h-3 bg-black rounded-sm"></div>
           <div className="w-16 h-3 bg-black rounded-sm"></div>
-        </div>
+        </button>
 
         {/* Logo */}
         <div className="text-center">

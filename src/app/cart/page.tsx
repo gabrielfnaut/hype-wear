@@ -1,8 +1,5 @@
 "use client";
 
-
-"use client";
-
 import React, { useState } from "react";
 import Image from "next/image";
 import Header from "@/components/Header";
@@ -10,11 +7,13 @@ import OrderSummary from "@/components/OrderSummary";
 import SizeSelector from "@/components/SizeSelector";
 import ShippingCalculator from "@/components/ShippingCalculator";
 import { useCart } from "@/context/CartContext";
+import { Sidebar } from "@/components/Sidebar";
 
 export default function Cart() {
   const { cartItems, removeFromCart, updateQuantity } = useCart();
   const [selectedSize, setSelectedSize] = useState("M");
   const [shipping, setShipping] = useState(27.5);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const sizes = ["P", "M", "G", "GG"];
 
@@ -35,7 +34,10 @@ export default function Cart() {
   };
 
   const subtotal = cartItems.reduce(
-    (sum, item) => sum + parseFloat(item.price.replace("R$ ", "").replace(",", ".")) * item.quantity,
+    (sum, item) =>
+      sum +
+      parseFloat(item.price.replace("R$ ", "").replace(",", ".")) *
+        item.quantity,
     0,
   );
   const total = subtotal + shipping;
@@ -46,9 +48,10 @@ export default function Cart() {
       className="min-h-screen bg-blue-100"
       style={{ backgroundColor: "#D2E7FE" }}
     >
+      <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
       {/* Header */}
       <div className="max-w-7xl mx-auto px-4">
-        <Header />
+        <Header onMenuClick={() => setIsSidebarOpen(true)} />
       </div>
 
       {/* Main Content */}
@@ -148,10 +151,7 @@ export default function Cart() {
                               </button>
                               <button
                                 onClick={() =>
-                                  updateQuantity(
-                                    item.id,
-                                    item.quantity + 1,
-                                  )
+                                  updateQuantity(item.id, item.quantity + 1)
                                 }
                                 className="w-10 h-10 rounded-full bg-gray-100 hover:bg-gray-200 flex items-center justify-center text-xl font-bold border-2 border-black transition-colors"
                                 style={{
@@ -224,4 +224,3 @@ export default function Cart() {
     </div>
   );
 }
-

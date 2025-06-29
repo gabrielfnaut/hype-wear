@@ -1,4 +1,3 @@
-
 import { Input } from "@/components/Input";
 import { Button } from "@/components/Button";
 import Link from "next/link";
@@ -21,14 +20,18 @@ export default function LoginPage() {
             <label className="font-ramaraja text-xl">Senha:</label>
             <Input type="password" placeholder="Digite sua senha" />
           </div>
-          <Button className="bg-[#18264A] text-white text-2xl font-ramaraja">Fazer Login</Button>
+          <Button className="bg-[#18264A] text-white text-2xl font-ramaraja">
+            Fazer Login
+          </Button>
           <p className="text-center font-ramaraja text-lg">
             Não possui conta?{" "}
             <Link href="/signup" className="text-black font-bold">
               Cadastre-se aqui!
             </Link>
           </p>
-          <Button className="bg-[#18264A] text-white text-2xl font-ramaraja">Cadastrar-se</Button>
+          <Button className="bg-[#18264A] text-white text-2xl font-ramaraja">
+            Cadastrar-se
+          </Button>
         </div>
       </main>
     </div>
