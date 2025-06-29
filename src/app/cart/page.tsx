@@ -1,54 +1,25 @@
 "use client";
 
+
+"use client";
+
 import React, { useState } from "react";
 import Image from "next/image";
 import Header from "@/components/Header";
 import OrderSummary from "@/components/OrderSummary";
 import SizeSelector from "@/components/SizeSelector";
 import ShippingCalculator from "@/components/ShippingCalculator";
-
-interface CartItemType {
-  id: string;
-  name: string;
-  description: string;
-  price: number;
-  imageUrl: string;
-  size: string;
-  quantity: number;
-}
+import { useCart } from "@/context/CartContext";
 
 export default function Cart() {
-  const [cartItems, setCartItems] = useState<CartItemType[]>([
-    {
-      id: "1",
-      name: "Moletom SOFT Palmers 1.0",
-      description:
-        "Feito 100% em algodão trazendo conforto e qualidade para a sua rotina",
-      price: 299.0,
-      imageUrl: "/images/product-large.png",
-      size: "M",
-      quantity: 1,
-    },
-  ]);
-
+  const { cartItems, removeFromCart, updateQuantity } = useCart();
   const [selectedSize, setSelectedSize] = useState("M");
   const [shipping, setShipping] = useState(27.5);
 
   const sizes = ["P", "M", "G", "GG"];
 
-  const handleQuantityChange = (id: string, quantity: number) => {
-    setCartItems((items) =>
-      items.map((item) => (item.id === id ? { ...item, quantity } : item)),
-    );
-  };
-
-  const handleRemoveItem = (id: string) => {
-    setCartItems((items) => items.filter((item) => item.id !== id));
-  };
-
   const handleSizeChange = (size: string) => {
     setSelectedSize(size);
-    setCartItems((items) => items.map((item) => ({ ...item, size })));
   };
 
   const handleShippingCalculate = (cep: string) => {
@@ -64,7 +35,7 @@ export default function Cart() {
   };
 
   const subtotal = cartItems.reduce(
-    (sum, item) => sum + item.price * item.quantity,
+    (sum, item) => sum + parseFloat(item.price.replace("R$ ", "").replace(",", ".")) * item.quantity,
     0,
   );
   const total = subtotal + shipping;
@@ -117,7 +88,7 @@ export default function Cart() {
                       {/* Product Image */}
                       <div className="flex-shrink-0">
                         <Image
-                          src={item.imageUrl}
+                          src={item.image}
                           alt={item.name}
                           width={283}
                           height={283}
@@ -162,7 +133,7 @@ export default function Cart() {
                             <div className="flex items-center gap-3">
                               <button
                                 onClick={() =>
-                                  handleQuantityChange(
+                                  updateQuantity(
                                     item.id,
                                     Math.max(1, item.quantity - 1),
                                   )
@@ -177,7 +148,7 @@ export default function Cart() {
                               </button>
                               <button
                                 onClick={() =>
-                                  handleQuantityChange(
+                                  updateQuantity(
                                     item.id,
                                     item.quantity + 1,
                                   )
@@ -196,10 +167,10 @@ export default function Cart() {
                           {/* Price and Remove Button */}
                           <div className="flex items-center gap-6">
                             <span className="text-2xl font-normal text-black font-ramaraja">
-                              R$ {item.price.toFixed(2).replace(".", ",")}
+                              {item.price}
                             </span>
                             <button
-                              onClick={() => handleRemoveItem(item.id)}
+                              onClick={() => removeFromCart(item.id)}
                               className="w-7 h-7 hover:opacity-70 transition-opacity"
                               title="Remover item"
                             >
@@ -253,3 +224,4 @@ export default function Cart() {
     </div>
   );
 }
+

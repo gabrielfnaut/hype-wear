@@ -2,9 +2,11 @@
 
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { useCart } from "@/context/CartContext";
 
 export default function Store() {
   const router = useRouter();
+  const { addToCart, cartCount } = useCart();
 
   const products = [
     {
@@ -64,8 +66,13 @@ export default function Store() {
 
         {/* Cart and Login */}
         <div className="flex items-center space-x-4">
-          <div className="w-16 h-16 overflow-hidden hover:cursor-pointer">
+          <div className="relative w-16 h-16 overflow-hidden hover:cursor-pointer" onClick={() => router.push("/cart")}>
             <Image src="/images/cart.png" alt="Cart" width={64} height={64} />
+            {cartCount > 0 && (
+              <div className="absolute top-0 right-0 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center">
+                {cartCount}
+              </div>
+            )}
           </div>
           <button
             className="bg-[#18264A] text-white px-5 py-3 rounded-lg shadow-lg hover:shadow-xl hover:cursor-pointer transition-shadow"
@@ -135,6 +142,7 @@ export default function Store() {
                 <button
                   className="w-full bg-[#18264A] text-white py-4 rounded-md shadow-md hover:shadow-lg hover:cursor-pointer transition-shadow"
                   style={{ fontFamily: "Ramaraja, serif" }}
+                  onClick={() => addToCart(product)}
                 >
                   COMPRAR
                 </button>
