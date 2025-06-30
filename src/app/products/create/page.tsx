@@ -18,7 +18,7 @@ export default function CreateProductPage() {
             <div>
               <h3 className="text-3xl font-ramaraja mb-4">Nome e descrição</h3>
               <div className="flex flex-col gap-4">
-                <Input label="Nome" />
+                <Input />
                 <Textarea label="Descrição" />
               </div>
             </div>

@@ -46,7 +46,7 @@ const ShippingCalculator: React.FC<ShippingCalculatorProps> = ({
             type="text"
             value={cep}
             onChange={handleCepChange}
-            placeholder="00000-000"
+            // placeholder="00000-000"
             maxLength={9}
             className="w-52 h-8 px-3 border-2 border-black rounded-2xl text-base font-normal bg-white focus:outline-none focus:border-blue-600 font-ramaraja"
           />

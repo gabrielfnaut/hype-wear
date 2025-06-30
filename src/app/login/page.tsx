@@ -1,8 +1,18 @@
+"use client";
+
 import { Input } from "@/components/Input";
 import { Button } from "@/components/Button";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 export default function LoginPage() {
+  const router = useRouter();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const isFormValid = email.trim() !== "" && password.trim() !== "";
+
   return (
     <div className="bg-[#D2E7FE] min-h-screen flex flex-col items-center justify-center">
       <header className="text-center mb-8">
@@ -13,23 +23,39 @@ export default function LoginPage() {
         <h2 className="text-4xl font-sedan-sc text-center mb-8">Fazer Login</h2>
         <div className="flex flex-col gap-6">
           <div>
-            <label className="font-ramaraja text-xl">Email:</label>
-            <Input placeholder="Digite seu email" />
+            <label className="font-ramaraja text-xl">E-mail:</label>
+            <Input
+              placeholder="Digite seu email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
           </div>
           <div>
             <label className="font-ramaraja text-xl">Senha:</label>
-            <Input type="password" placeholder="Digite sua senha" />
+            <Input
+              type="password"
+              placeholder="Digite sua senha"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
           </div>
-          <Button className="bg-[#18264A] text-white text-2xl font-ramaraja">
+          <Button
+            onClick={() => router.push("/products/create")}
+            className="bg-[#18264A] text-white text-2xl font-ramaraja hover:cursor-pointer disabled:bg-gray-500 disabled:cursor-default"
+            disabled={!isFormValid}
+          >
             Fazer Login
           </Button>
           <p className="text-center font-ramaraja text-lg">
-            Não possui conta?{" "}
-            <Link href="/signup" className="text-black font-bold">
-              Cadastre-se aqui!
+            Esqueceu sua senha?{" "}
+            <Link href="/reset-password" className="text-black font-bold">
+              Recuperar conta
             </Link>
           </p>
-          <Button className="bg-[#18264A] text-white text-2xl font-ramaraja">
+          <Button
+            onClick={() => router.push("/signup")}
+            className="bg-[#18264A] text-white text-2xl font-ramaraja hover:cursor-pointer"
+          >
             Cadastrar-se
           </Button>
         </div>

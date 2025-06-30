@@ -1,3 +1,5 @@
+"use client";
+
 import { Input } from "@/components/Input";
 import { Button } from "@/components/Button";
 
@@ -12,7 +14,7 @@ export default function SignupPage() {
         <h2 className="text-4xl font-sedan-sc text-center mb-8">CADASTRO</h2>
         <div className="flex flex-col gap-6">
           <div>
-            <label className="font-ramaraja text-3xl">Nome completo</label>
+            <label className="font-ramaraja text-3xl">Nome Completo</label>
             <Input />
           </div>
           <div>
@@ -27,7 +29,10 @@ export default function SignupPage() {
             <label className="font-ramaraja text-3xl">Criar SENHA</label>
             <Input type="password" />
           </div>
-          <Button className="bg-[#18264A] text-white text-xl font-sedan-sc self-center px-16 py-4">
+          <Button
+            onClick={() => global.alert("Cadastro realizado com sucesso!")}
+            className="bg-[#18264A] text-white text-xl font-sedan-sc self-center px-16 py-4 hover:cursor-pointer"
+          >
             SALVAR
           </Button>
         </div>
