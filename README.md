@@ -34,15 +34,15 @@ Certifique-se de ter o seguinte instalado:
 1.  Clone o repositório:
 
 ```bash
-    git clone https://github.com/tiagordebarros/hype-wear.git
-    cd hype-wear
-    ```
+git clone https://github.com/tiagordebarros/hype-wear.git
+cd hype-wear
+```
 
 2.  Instale as dependências:
 
 ```bash
-    pnpm install
-    ```
+pnpm install
+```
 
 ### Executando o servidor de desenvolvimento
 
