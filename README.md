@@ -1,36 +1,110 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# HypeWear
 
-## Getting Started
+HypeWear é um aplicativo de comércio eletrônico criado com Next.js, projetado para proporcionar uma experiência de compra perfeita para roupas da moda. Foi construido como apoio para um dos projetos integradors do curso de Análise e Desenvolvimento de Sistemas (ADS) da Universidade de Caxias do Sul (UCS).
 
-First, run the development server:
+## Recursos
+
+- **Lista de produtos**: navegue por uma variedade de produtos com descrições detalhadas.
+- **Carrinho de compras**: adicione e gerencie itens em seu carrinho.
+- **Autenticação do usuário**: processos seguros de login e cadastro.
+- **Gerenciamento de produtos**: crie novas listas de produtos.
+- **Design responsivo**: otimizado para vários tamanhos de tela.
+
+## Tecnologias utilizadas
+
+- **Next.js**: estrutura React para a criação de aplicativos web de alto desempenho.
+- **React**: biblioteca JavaScript para a criação de interfaces de usuário.
+- **TypeScript**: superconjunto de JavaScript que adiciona tipagem estática.
+- **Tailwind CSS**: framework CSS utilitário para o desenvolvimento rápido de interfaces de usuário.
+- **ESLint**: Utilitário de linting plugável para JavaScript e JSX.
+
+## Introdução
+
+Siga estas etapas para configurar e executar o projeto localmente.
+
+### Pré-requisitos
+
+Certifique-se de ter o seguinte instalado:
+
+- Node.js (v18 ou superior recomendado)
+- npm ou pnpm (pnpm é usado neste projeto)
+
+### Instalação
+
+1.  Clone o repositório:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+    git clone https://github.com/tiagordebarros/hype-wear.git
+    cd hype-wear
+    ```
+
+2.  Instale as dependências:
+
+```bash
+    pnpm install
+    ```
+
+### Executando o servidor de desenvolvimento
+
+Para executar o aplicativo no modo de desenvolvimento com recarga a quente:
+
+```bash
+pnpm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abra [http://localhost:3000](http://localhost:3000) no seu navegador para ver o resultado.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Compilando para produção
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Para compilar o aplicativo para produção:
 
-## Learn More
+```bash
+pnpm run build
+```
 
-To learn more about Next.js, take a look at the following resources:
+Isso criará uma compilação otimizada no diretório `.next`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Executando no modo de produção
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Para iniciar o servidor de produção:
 
-## Deploy on Vercel
+```bash
+pnpm run start
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Linting
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Para executar o linter:
+
+```bash
+pnpm run lint
+```
+
+## Estrutura do projeto
+
+```
+hype-wear/
+├───public/             # Ativos estáticos (imagens, fontes)
+├───src/
+│   ├───app/            # Páginas e layouts do roteador do aplicativo Next.js
+│   │   ├───cart/
+│   │   ├───login/
+│   │   ├───products/create/
+│   │   ├───signup/
+│   │   └───store/
+│   ├───componentes/     # Componentes de interface do usuário reutilizáveis
+│   ├───contexto/        # API React Context para estado global
+│   └───globals.css     # Estilos globais
+├───.gitignore
+├───next.config.ts      # Configuração do Next.js
+├───package.json        # Dependências e scripts do projeto
+├───pnpm-lock.yaml      # Arquivo de bloqueio pnpm
+├───postcss.config.mjs  # Configuração PostCSS
+├───README.md           # Arquivo README do projeto
+├───tsconfig.json       # Configuração TypeScript
+└───eslint.config.mjs   # Configuração ESLint
+```
+
+## Contribuições
+
+Contribuições são bem-vindas! Faça um fork do repositório e crie uma solicitação pull com suas alterações.
